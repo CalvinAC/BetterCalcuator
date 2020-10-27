@@ -16,11 +16,12 @@ Module BetterCalculator
 
 
 
+
         Do
             Console.WriteLine("Please enter 2 numbers. Enter 'Q' at any time to quit")
             Do Until data = True
 
-                Do Until data = True
+                Do Until data = True ' "Q" is not evaluated here - TJR
 
                     Try
                         Console.WriteLine("Choose a number: ")
@@ -50,12 +51,12 @@ Module BetterCalculator
                 End Try
 
                 If data = False Then
-
+                    'unused remove this - TJR
                 End If
 
             Loop
 
-            Do Until userMathSelect = "1" Or userMathSelect = "2" Or userMathSelect = "3" Or userMathSelect = "4"
+            Do Until userMathSelect = "1" Or userMathSelect = "2" Or userMathSelect = "3" Or userMathSelect = "4" ' "Q" is not evaluated here - TJR
 
                 Console.WriteLine("Choose one of the following options:")
                 Console.WriteLine("1. Add")
@@ -64,7 +65,7 @@ Module BetterCalculator
                 Console.WriteLine("4. Divide")
 
                 userMathSelect = Console.ReadLine()
-                mathNum = CInt(userMathSelect)
+                mathNum = CInt(userMathSelect) 'Crashes here with bad input. Put conversion in a try catch. - TJR
 
                 If mathNum > 4 Then
                     Console.WriteLine("That is not a math option, please select 1-4")
@@ -86,10 +87,18 @@ Module BetterCalculator
 
             Loop
 
+            'This extra user input with no prompt is awkward - TJR 
+            'Ask user if they want to quit or continue - TJR
+            'even better evaluate for Q in each of the user inputs from above. - TJR
             If Console.ReadKey().Key = ConsoleKey.Q Then
                 Exit Sub
             End If
 
+            'Here is the bug you mentioned - TJR
+            'Set data to False here to continue - TJR
+            'Clear userMathSelect here to continue - TJR
+            data = False
+            userMathSelect = ""
         Loop
     End Sub
 
