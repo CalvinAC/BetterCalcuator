@@ -15,9 +15,6 @@ Module BetterCalculator
         Dim firstNum, secondNum, mathNum As Integer
         Dim data As Boolean
 
-
-
-
         Do
             Console.WriteLine("Please enter 2 numbers. Enter 'Q' at any time to quit")
             Do Until data = True
